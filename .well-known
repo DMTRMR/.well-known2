@@ -1,0 +1,15 @@
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+
+async function handleRequest(request) {
+  if (request.url.endsWith('/.well-known/apple-developer-merchantid-domain-association')) {
+    return new Response(
+      `your-verification-file-content`, // Replace with your actual file content
+      {
+        headers: { 'Content-Type': 'text/plain' }
+      }
+    )
+  }
+  return new Response('Not Found', { status: 404 })
+}
